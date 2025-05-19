@@ -54,8 +54,8 @@ It checks that the unit price captured on the Product Detail Page (PDP) matches 
 
 ```bash
 # 1. Clone the repository
-git clone <REPOSITORY_URL>
-cd <PROJECT_FOLDER>
+git clone https://github.com/adeliasb/amazon-cart-e2e.git
+cd amazon-cart-e2e
 
 # 2. Install dependencies
 npm install
