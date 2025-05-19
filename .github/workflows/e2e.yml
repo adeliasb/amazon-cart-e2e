@@ -1,0 +1,41 @@
+name: Cypress E2E
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar Cypress (headless)
+        run: npx cypress run --browser chrome
+
+      #  Artefatos
+      - name: 📎 Fazer upload de screenshots
+        uses: actions/upload-artifact@v4
+        if: failure() # só se falhar
+        with:
+          name: cypress-screenshots
+          path: cypress/artifacts/screenshots
+
+      - name: 📎 Fazer upload de vídeos
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/artifacts/videos
