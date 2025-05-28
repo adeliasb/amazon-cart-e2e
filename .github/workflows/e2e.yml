@@ -35,7 +35,6 @@ jobs:
 
       - name: 📎 Fazer upload de vídeos
         uses: actions/upload-artifact@v4
-        if: failure()
         with:
           name: cypress-videos
           path: cypress/artifacts/videos
